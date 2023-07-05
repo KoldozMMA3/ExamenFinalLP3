@@ -8,5 +8,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/crist/Downloads/jflex-1.6.1 (1)/jflex-1.6.1/lib/java-cup-11a.jar"/>
 	<classpathentry kind="lib" path="C:/Users/crist/Downloads/jflex-1.6.1 (1)/jflex-1.6.1/lib/jflex-1.6.1.jar"/>
+	<classpathentry kind="lib" path="jgoodies-common-1.8.0.jar" sourcepath="jgoodies-common-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
