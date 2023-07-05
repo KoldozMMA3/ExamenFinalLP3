@@ -23,27 +23,37 @@ private void imprimir(String descripcion, String lexema) {
 ID = [_a-zA-Z][_a-zA-Z0-9]*
 ENTERO = 0|[1-9][0-9]* 
 PUNTO_FLOTANTE = [0-9][0-9]*"."[0-9]+
-OPERADORES_MATEMATICOS = ("+" | "-" | "*" | "/")
-SIMBOLOS = ("<" | ">" | "<=" | ">=" | "==" | "!=" | "=" | ";" | "," | "(" | ")" | "{" | "}" | "[" | "]")
+OPERADORES_MATEMATICOS = ("+" | "-" | "*" | "/" | "'")
+SIMBOLOS = ("(" | ")" | "{" | "}" | "[" | "]")
 POSICION = ("center" | "top" | "bottom" | "left" | "right")
 ESPACIO_BLANCO = [ \t]+
 ESPACIO = [ \t\r\n]+
-SIGNO = ("+" | "-" | "*" | "/" | "=" | "<" | ">" | ";" | "." | "," | "(" | ")" | "{" | "}" | "[" | "]")
+SIGNO = ("+" | "-" | "*" | "/" | "=" | "<" | ">" | ";" | "." | "," | "(" | ")" | "{" | "}" | "[" | "]" )
 %%
 // Explicación de lo que imprimirá
-
+"=<" { imprimir("Mayor igual que", yytext()); }
+"=>" { imprimir("Menor igual que", yytext()); }
+"<=" { imprimir("Mayor igual que", yytext()); }
+">=" { imprimir("Menor igual que", yytext()); }
+"==" { imprimir("Asigna valor ", yytext()); }
+"!=" { imprimir("No es igual", yytext()); }
+"=" { imprimir("Igual", yytext()); }
+";" { imprimir("Punto y coma", yytext()); }
+"," { imprimir("Coma", yytext()); }
+"<" { imprimir("Mayor que", yytext()); }
+"  " { imprimir("Espacio Blanco", yytext()); }
 " " { imprimir("Espacio Blanco", yytext()); }
-"if" { imprimir("Instrucción if", yytext()); }
-"else" { imprimir("Instrucción else", yytext()); }
-"while" { imprimir("Instrucción while", yytext()); }
-"for" { imprimir("Instrucción for", yytext()); }
-"do" { imprimir("Instrucción do", yytext()); }
-"switch" { imprimir("Instrucción switch", yytext()); }
-"case" { imprimir("Instrucción case", yytext()); }
-"default" { imprimir("Instrucción default", yytext()); }
-"break" { imprimir("Instrucción break", yytext()); }
-"continue" { imprimir("Instrucción continue", yytext()); }
-"return" { imprimir("Instrucción return", yytext()); }
+"if" { imprimir("Instruccion if", yytext()); }
+"else" { imprimir("Instruccion else", yytext()); }
+"while" { imprimir("Instruccion while", yytext()); }
+"for" { imprimir("Instruccion for", yytext()); }
+"do" { imprimir("Instruccion do", yytext()); }
+"switch" { imprimir("Instruccion switch", yytext()); }
+"case" { imprimir("Instruccion case", yytext()); }
+"default" { imprimir("Instruccion default", yytext()); }
+"break" { imprimir("Instruccion break", yytext()); }
+"continue" { imprimir("Instruccion continue", yytext()); }
+"return" { imprimir("Instruccion return", yytext()); }
 "typedef" { imprimir("Palabra clave typedef", yytext()); }
 "namespace" { imprimir("Palabra clave namespace", yytext()); }
 "using" { imprimir("Palabra clave using", yytext()); }
@@ -86,19 +96,45 @@ SIGNO = ("+" | "-" | "*" | "/" | "=" | "<" | ">" | ";" | "." | "," | "(" | ")" |
 "constexpr" { imprimir("Palabra clave constexpr", yytext()); }
 "this" { imprimir("Puntero 'this'", yytext()); }
 "friend" { imprimir("Palabra clave friend", yytext()); }
-"cin" { imprimir("Entrada estándar cin", yytext()); }
-"cout" { imprimir("Salida estándar cout", yytext()); }
-"endl" { imprimir("Fin de línea endl", yytext()); }
+"printf" { imprimir("Imprimir valor", yytext()); }
+"cin" { imprimir("Entrada estandar cin", yytext()); }
+"cout" { imprimir("Salida estandar cout", yytext()); }
+"endl" { imprimir("Fin de linea endl", yytext()); }
 {ESPACIO_BLANCO} { /* Ignorar espacio en blanco */ }
 {ESPACIO} { /* Ignorar espacios */ }
 {ID} { imprimir("Identificador", yytext()); }
-{ENTERO} { imprimir("Número entero", yytext()); }
-{PUNTO_FLOTANTE} { imprimir("Número de punto flotante", yytext()); }
-{OPERADORES_MATEMATICOS} { imprimir("Operadores matemáticos", yytext()); }
-{SIMBOLOS} { imprimir("Símbolo", yytext()); }
-{POSICION} { imprimir("Posición", yytext()); }
+{ENTERO} { imprimir("Numero entero", yytext()); }
+{PUNTO_FLOTANTE} { imprimir("Numero de punto flotante", yytext()); }
+{OPERADORES_MATEMATICOS} { imprimir("Operadores matematicos", yytext()); }
+{SIMBOLOS} { imprimir("Simbolo", yytext()); }
+{POSICION} { imprimir("Posicion", yytext()); }
 {SIGNO} { imprimir("Signo", yytext()); }
 \"[^\"]*\" { imprimir("Cadena", yytext()); } // Reconoce las cadenas entre comillas
+"!" { imprimir("Operador de negacion", yytext()); }
+"\"" { imprimir("Comillas dobles", yytext()); }
+"#" { imprimir("Simbolo de preprocesador", yytext()); }
+"%" { imprimir("Operador modulo", yytext()); }
+"&" { imprimir("Operador bit a bit AND", yytext()); }
+"/" { imprimir("Operador de division", yytext()); }
+"(" { imprimir("Parentesis izquierdo", yytext()); }
+")" { imprimir("Parentesis derecho", yytext()); }
+"=" { imprimir("Operador de asignacion", yytext()); }
+"?" { imprimir("Signo de interrogacion", yytext()); }
+"¡" { imprimir("Signo de exclamacion de apertura", yytext()); }
+"¿" { imprimir("Signo de interrogacion de apertura", yytext()); }
+"<<" { imprimir("Operador de insercion", yytext()); }
+">>" { imprimir("Operador de extraccion", yytext()); }
+"endl" { imprimir("Fin de linea endl", yytext()); }
+"&&" { imprimir("Operador logico AND", yytext()); }
+"||" { imprimir("Operador logico OR", yytext()); }
+"++" { imprimir("Operador de incremento", yytext()); }
+"--" { imprimir("Operador de decremento", yytext()); }
+":" { imprimir("Dos puntos", yytext()); }
+"%:" { imprimir("Simbolo de concatenacion", yytext()); }
+".*" { imprimir("Operador de puntero a miembro", yytext()); }
+".->" { imprimir("Operador de puntero a miembro", yytext()); }
+"->" { imprimir("Operador de acceso a miembro", yytext()); }
+"..." { imprimir("Elipsis", yytext()); }
 . { 
     if (!yytext().matches("\\s")) {
         throw new RuntimeException("Caracter inválido \"" + yytext() +
